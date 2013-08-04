@@ -1,0 +1,35 @@
+title: Local EMail Redirection
+slug: mail-redirect
+description: How to configure a redicetion from a local mailbox
+type: tutorial
+category: tutorials
+tags: [linux, server, postix, email]
+date: 2012-12-12
+---
+
+## install and configure postfix
+
+	sudo apt-get install postfix
+	nano /etc/postfix/main.cf
+
+The config file should contain something like:
+
+	myhostname = hostname.the-domain-i-own.tld
+	mydomain = the-domain-i-own.tld
+	mydestination =
+	inet_interfaces = loopback-only
+	relayhost = mail.the-domain-i-own.tld
+	virtual_alias_maps = hash:/etc/postfix/virtual
+
+## configure generic adresses
+
+	nano /etc/postfix/virtual
+
+This should redirect all local mails to the admin account
+
+	@hostname.the-domain-i-own.tld admin@the-domain-i-own.tld
+
+## check and load config
+
+	sudo postmap /etc/postfix/virtual
+	sudo /etc/init.d/postfix reload

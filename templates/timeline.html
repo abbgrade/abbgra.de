@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block sec_navigation  %}
+{% endblock %}
+
+{% block social_share %}   
+{% endblock %}
+
+{% block comments %}
+{% endblock %}
+
+{% block content %}
+	<div class="lead">
+{{ page.content }}
+	</div>
+<div class="row">
+{% for item in pagination.page_items %}
+	{% include 'timeline-post.html' %}
+{% endfor %}
+</div>
+{% endblock %}

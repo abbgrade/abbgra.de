@@ -1,0 +1,14 @@
+<div class="timeline_update span4">
+	<p class="muted timeline_update_actions">
+		<span class="label">
+			{{ item.datetime.strftime('%c') }}
+		</span>
+		<span class="timeline_actions_json"style="display:none">
+			{{ item.actions }}
+		</span>
+	</p>
+	<p>
+		{{ item.content }}
+	</p>
+	<hr/>
+</div>

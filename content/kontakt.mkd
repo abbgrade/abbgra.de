@@ -1,0 +1,9 @@
+title: Kontakt
+type: contact
+slug: contact
+name: Steffen Kampmann
+email: steffen.kampmann@abbgra.de
+pgp: steffen.kampmann.asc
+diaspora: abb@diaspora.abbgra.de
+diaspora_profile: https://diaspora.abbgra.de/u/abb
+---

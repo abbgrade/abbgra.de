@@ -1,0 +1,20 @@
+title: Autoupdate Notification
+description: How to configure an mail notification on software updates
+type: tutorial
+category: tutorials
+tags: [linux, server, cron, cron-apt, email]
+date: 2012-12-12
+---
+
+## install and configure cron-apt
+
+	sudo apt-get install cron-apt
+	sudo nano /etc/cron-apt/config
+	
+## configure notification
+	
+	MAILON="always"
+
+## configure cron activation
+
+	sudo ln -s /usr/sbin/cron-apt /etc/cron.daily/cron-apt

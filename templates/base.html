@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+	<title>{{site.title}} - {{page.title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="{{page.author}}">
+
+    <link rel="alternate" type="application/rss+xml" title="Blog - RSS Feed" href="{{ page.url_prefix }}/feed.xml" />
+
+    <link href="{{ page.url_prefix }}css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="{{ page.url_prefix }}css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="{{ page.url_prefix }}js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ page.url_prefix }}ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ page.url_prefix }}ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ page.url_prefix }}ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="{{ page.url_prefix }}ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="{{ page.url_prefix }}ico/favicon.png">
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#" style="height:20px;padding-top:5px;">
+		<img style="height:35px;" src="{{ page.url_prefix }}img/logo.png" alt="{{site.title}}"/>
+	  </a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li{% if page.slug in [site.slugs.blog.slug] or page.url.startswith('/' + site.slugs.blog.slug) %} class="active"{% endif %}>
+		<a href="{{ page.url_prefix }}{{ site.slugs.blog.url }}">{{ site.slugs.blog.title }}</a>
+	      </li>
+              <li{% if page.slug in [site.slugs.timeline.slug] or page.url.startswith('/' + site.slugs.timeline.slug) %} class="active"{% endif %}>
+		<a href="{{ page.url_prefix }}{{ site.slugs.timeline.url }}">{{ site.slugs.timeline.title }}</a>
+	      </li>
+              <li{% if page.slug in [site.slugs.tutorials.slug] or page.url.startswith('/' + site.slugs.tutorials.slug) %} class="active"{% endif %}>
+		<a href="{{ page.url_prefix }}{{ site.slugs.tutorials.url }}">{{ site.slugs.tutorials.title }}</a>
+	      </li>
+              <li{% if page.slug in [site.slugs.contact.slug] or page.url.startswith('/' + site.slugs.contact.slug) %} class="active"{% endif %}>
+		<a href="{{ page.url_prefix }}{{ site.slugs.contact.url }}">{{ site.slugs.contact.title }}</a>
+	      </li>
+            </ul>
+		<form class="navbar-search pull-right" method="get" id="search" action="http://duckduckgo.com/">
+			<input type="hidden" name="sites" value="{{ page.fq_url_prefix }}"/>
+			<input type="text" class="search-query"  maxlength="255" placeholder="DuckDuckGo-Suche" name="q" />
+		</form>
+          </div>
+        </div>
+      </div>
+    </div>
+	<div class="container">
+		<h1 class="page-header">
+			{{ page.title }}
+		</h1>
+		<div>
+{% if page.datetime %}
+			<span class="label">
+				{{ page.datetime.strftime("%c") }}
+			</span>
+{% endif %}
+{% for tag in page.tags %}
+			<span class="label">
+				{{ tag }}
+			</span>
+{% endfor %}
+		</div>
+
+		{% block content %}
+		{{ page.content }}
+		{% endblock %}
+
+		{% block social_share %}
+<!--   
+		<div class="share">
+		</div>
+-->
+		{% endblock %}
+		{% block comments %}
+		<hr />
+		<div>
+		<h2>Kommentare</h2>
+{% for comment in page.subpages %}
+			<div>
+				<p class="muted">
+					<span class="label">
+						{{ comment.datetime.strftime('%c') }}
+					</span>
+					{{comment.author}}
+				</p>
+				<blockquote>
+					{{ comment.content }}
+				</blockquote>
+			</div>
+{% endfor %}
+			<a class="btn btn-primary" href="mailto:comment@abbgra.de?subject={{ page.category[0]|safe }}%2F{{ page.slug|safe }}">Add Comment</a>
+			<div class="help-block">Please don't edit the subject!</div>
+			<div class="alert alert-info">The email address wont be published!</div>
+		</div>
+		{% endblock %}
+		<div class="clearfix"> </div>
+		<div class="text-center">
+		<hr />
+			<p>
+				<a href="{{ page.url_prefix }}{{ site.slugs.contact.url }}"> {{ page.author }} </a>
+				{% if page.datetime %} - {{ page.datetime.strftime("%d.%m.%Y") }}{% endif %}
+				 - <a href="{{ page.url_prefix }}{{ site.slugs.feed.url }}" />RSS-Feed</a>
+			</p>
+<!--
+			<p>
+				Ermöglicht durch:
+				<a href="http://wok.mythmon.com/docs/config/"> Wok </a>,
+				<a href="http://twitter.github.com/bootstrap/index.html"> Bootstrap </a>
+				und viele weitere OpenSource Projekte!
+			</p>
+-->
+		</div>
+	</div>
+
+	<script src="{{ page.url_prefix }}js/jquery.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-collapse.js"></script>
+	<!--
+	<script src="{{ page.url_prefix }}js/bootstrap-transition.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-alert.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-modal.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-dropdown.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-scrollspy.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-tab.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-tooltip.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-popover.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-button.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-carousel.js"></script>
+	<script src="{{ page.url_prefix }}js/bootstrap-typeahead.js"></script>
+	-->
+	<script type="text/javascript" src="{{ page.url_prefix }}js/jquery.socialshareprivacy.min.js"></script>
+	<script type="text/javascript">
+$(document).ready(function () {
+	$('.share').socialSharePrivacy({
+        	language: 'de',
+			services: {
+				'buffer': {'status':false},
+				'delicious': {'status':false},
+				'disqus': {'status':false},
+				'facebook': {'status':false},
+				'flattr': {'status':false},
+				'gplus': {'status':false},
+				'hackernews': {'status':false},
+				'linkedin': {'status':false},
+				'mail': {'status':false},
+				'pinterest': {'status':false},
+				'reddit': {'status':false},
+				'stumbleupon': {'status':false},
+				'tumblr': {'status':false},
+				'twitter': {'status':false},
+				'xing': {'status':false},
+			flattr: {
+				uid      : 'abb',
+				category : 'Text',
+				hidden   : 1
+			},
+			gplus: {},
+			facebook: {},
+			twitter: {},
+		},
+		path_prefix: '{{ page.url_prefix }}plugins/socialshareprivacy/',
+		//layout: 'box'
+	});
+});
+	</script>
+
+{% block javascript_plugin_block %}
+	<script type="text/javascript">
+	$(function() {
+	    $('div.timeline_update').each(function(){
+	    	actions = eval($(this).find('span.timeline_actions_json').text());
+	    	var _this = this;
+	    	$.each(actions, function() {
+	    		var label = this[0];
+	    		var url = this[1];
+	    		$(_this).find('.timeline_update_actions').append('<a class="btn btn-mini" href="' + url +'">' + label + '</a>');
+	    	});
+	    });
+	});
+	</script>
+{% endblock %}
+</body>

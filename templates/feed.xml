@@ -1,0 +1,26 @@
+{% set datefmt = '%a, %d %b %Y %H:%M:%S GMT' %}
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <atom:link href="{{ site.base_url }}{{ page.url }}" rel="self"
+            type="application/rss+xml" />
+        <title>{{ site.site_name }}</title>
+        <link>{{ site.fq_url_prefix }}{{ page.url }}</link>
+        <language>de-de</language>
+        <pubDate>{{ site.datetime.strftime(datefmt) }}</pubDate>
+        <docs>{{ site.base_url }}</docs>
+{% for item in site.categories['blog'][:10] %}
+        <item>
+            <title>{{item.title}}</title>
+            <link>{{ site.fq_url_prefix }}{{ item.url }}</link>
+            <pubDate>{{ item.datetime.strftime(datefmt) }}</pubDate>
+            <description>
+                {{ item.content|e }}
+            </description>
+            <guid>
+                {{site.fq_url_prefix}}{{ item.url }}
+            </guid>
+        </item>
+{% endfor %}
+    </channel>
+</rss>

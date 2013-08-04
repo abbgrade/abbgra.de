@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block sec_navigation  %}
+{% endblock %}
+
+{% block social_share %}   
+{% endblock %}
+
+{% block comments %}
+{% endblock %}
+
+{% block content %}
+<div class="lead">
+{{ page.content }}
+</div>
+<div class="row">
+	<div class="span8">
+		<ul class="thumbnails">
+{% for item in pagination.page_items %}
+			<li class="span8">
+    			<div class="thumbnail">
+	{% if item.thumbnail %}
+					<div style="position:relative;height:200px;overflow:hidden;">
+						<a href="{{ item.url }}">
+							<img src="blog/{{ item.thumbnail }}" />
+						</a>
+					</div>
+	{% endif %}
+					<div>
+	{% if item.datetime %}
+						<span class="label">
+							{{ item.datetime.strftime("%c") }}
+						</span>
+	{% endif %}
+	{% for tag in item.tags %}
+							<span class="label"> {{ tag }} </span>
+	{% endfor %}
+					</div>
+					<h2>
+						{{ item.title }}
+					</h2>
+					<p>
+						{{ item.summary }}
+					</p>
+					<div class="btn-group pull-right">
+						<a class="btn btn-primary" href="{{item.url}}">
+							show more
+						</a>
+					</div>
+					<div class="clearfix"> </div>
+<!--
+					<div class="share" data-uri="{{ item.url }}"></div>
+-->
+				</div>
+			</li>
+{% endfor %}
+		</ul>
+	</div>
+	<div class="span3">
+		<h2>
+			{{ site.slugs['timeline'].title }}
+		</h2>
+{% for item in site.slugs['timeline'].pagination.page_items[:10] %}
+	{% include 'timeline-post.html' %}
+{% endfor %}
+		<p>	
+			<a class="btn pull-right" href="{{ site.slugs['timeline'].url }}">
+				show more
+			</a>
+			<span class="clearfix"> </span>
+		</p>
+	</div>
+</div>
+{% endblock %}

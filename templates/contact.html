@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block comments %}
+{% endblock %}
+
+{% block content %}
+<dl class="dl-horizontal" xmlns:v="http://rdf.data-vocabulary.org/#" typeof="v:Person">	
+	<dt>
+		Name:
+	</dt>
+	<dd property="v:name">
+		{{ page.name }}
+	</dd>
+	<dt>
+		Mail:
+	</dt>
+	<dd>
+		<a href="mailto:{{ page.email }}">
+			{{ page.email }}
+		</a>
+		 - 
+		<small>
+			<a href="steffen.kampmann.asc">
+				PGP Public Key
+			</a>
+		</small>
+	</dd>
+	<dt>
+		Website:
+	</dt>
+	<dd>
+		<a href="{{ page.fq_url_prefix }}" rel="v:url">
+			{{ page.fq_url_prefix }}
+		</a>
+	</dd>
+	<dt>
+		Diaspora:
+	</dt>
+	<dd>
+		<a href="{{ page.diaspora_profile }}" rel="v:url">
+			{{ page.diaspora }}
+		</a>
+	</dd>
+</dl>
+{{ page.content }}
+{% endblock %}
+
+{% block social_share %}   
+{% endblock %}
