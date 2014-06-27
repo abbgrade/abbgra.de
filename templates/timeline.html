@@ -3,17 +3,11 @@
 {% block sec_navigation  %}
 {% endblock %}
 
-{% block social_share %}   
-{% endblock %}
-
 {% block comments %}
 {% endblock %}
 
 {% block content %}
-	<div class="lead">
-{{ page.content }}
-	</div>
-<div class="row">
+<div class="list-group">
 {% for item in pagination.page_items %}
 	{% include 'timeline-post.html' %}
 {% endfor %}

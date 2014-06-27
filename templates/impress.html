@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block comments %}
+{% endblock %}
+
+{% block content %}
+{% for subpage in page.subpages %}
+        <h3>
+            <a href="{{ subpage.url }}">{{ subpage.title }}</a>
+        </h3>
+    {% set person = subpage %}
+    {% include 'contact_sheet.html' %}
+{% endfor %}
+{% endblock %}

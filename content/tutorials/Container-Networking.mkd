@@ -1,5 +1,5 @@
 title: OpenVZ Networking
-description: How to configure and virtual network adapter in an openvz guest
+description: How to configure and virtual network adapter in an openvz guest.
 type: tutorial
 category: tutorials
 tags: [linux, server, networking, virtualization, openvz]

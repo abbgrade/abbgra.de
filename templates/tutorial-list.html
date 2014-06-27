@@ -3,9 +3,6 @@
 {% block sec_navigation  %}
 {% endblock %}
 
-{% block social_share %}   
-{% endblock %}
-
 {% block comments %}
 {% endblock %}
 
@@ -14,59 +11,60 @@
 {{ page.content }}
 </div>
 <div class="row">
-	<div class="span8">
-		<ul class="thumbnails">
+	<div class="col-lg-8">
 {% for tutorial in page.subpages %}
-			<li class="span6">
-				<div class="thumbnail">
-					<div>
-						{% for tag in tutorial.tags %}
-							<span class="label">
-								{{ tag }}
-							</span>
-						{% endfor %}
-					</div>
-					<h2>
-						{{ tutorial.title }}
-					</h2>
-					<p>
-						{{ tutorial.description }}
-					</p>
-					<div class="btn-group pull-right">
-						<a class="btn btn-primary" href="{{tutorial.url}}">
-							show tutorial
+		<div class="panel">
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					{% for tag in tutorial.tags %}
+						<a class="btn btn-default dropdown-toggle" disabled="disabled" role="button" data-toggle="dropdown" data-target="#tag_{{tag}}">
+							{{ tag }}
 						</a>
-					</div>
-					<div class="clearfix"> </div>
+					{% endfor %}
 				</div>
-			</li>
-{% endfor %}
-		</ul>
-	</div>
-
-	<div class="span3">
-		<h3>
-			Tagsearch
-		</h3>
-		<div accordion" id="accordion_tags">
-		{% for tag in site.tags|sort %}
-			<div class="accordion-group">
-				<div class="accordion-heading">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_tags" href="#tag_{{tag}}">
-						{{ tag }}
-						<span class="badge">{{ site.tags[tag]|length }}</span>
+				<div class="btn-group pull-right">
+					<a class="btn btn-primary" href="{{tutorial.url}}">
+						show tutorial
 					</a>
 				</div>
-				<div class="accordion-body collapse" id="tag_{{ tag }}">
-					<ul class="accordion-inner nav nav-list">
-					{% for tutorial in site.tags[tag] %}
-						<li><a href="{{ page.url_prefix }}{{tutorial.url}}">{{tutorial.title}}</a></li>
-					{% endfor %}
-					</ul>
-				</div>
 			</div>
-		{% endfor %}
+			<h2>
+				{{ tutorial.title }}
+			</h2>
+			<p>
+				{{ tutorial.description }}
+			</p>
 		</div>
+{% endfor %}
+	</div>
+	<div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Tagsearch
+                </h3>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                {% for tag in site.tags|sort %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="badge">{{ site.tags[tag]|length }}</span>
+                        {{ tag }}
+                    </a>
+                    <ul class="dropdown-menu" role="menu" id="tag_{{ tag }}">
+                        <li class="dropdown-header">Related Tutorials</li>
+                        {% for tutorial in site.tags[tag] %}
+                        <li>
+                            <a href="{{ page.url_prefix }}{{tutorial.url}}">
+                                {{tutorial.title}}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
 	</div>
 </div>
 {% endblock %}

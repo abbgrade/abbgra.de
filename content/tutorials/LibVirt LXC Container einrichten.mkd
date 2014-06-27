@@ -1,5 +1,5 @@
 title: LXC and LibVirt Virtual Machines
-description: How to create and configure and lxc, libvirt guest
+description: How to create and configure a lxc guest with libvirt.
 type: tutorial
 category: tutorials
 tags: [linux, server, virtualization, lxc, libvirt]
@@ -113,6 +113,6 @@ If you left out the following parameter on the container creation, then you have
 	sudo passwd $USERNAME
 	sudo adduser $USERNAME sudo
 
-### delete unscure default user
+### delete inscure default user
 
 	sudo userdel -r ubuntu

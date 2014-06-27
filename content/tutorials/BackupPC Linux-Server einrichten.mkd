@@ -1,5 +1,5 @@
 title: BackupPC Server
-description: How to configure an backup-pc server
+description: How to configure a backup-pc server.
 type: tutorial
 category: tutorials
 tags: [linux, backuppc, ssh, rsync]

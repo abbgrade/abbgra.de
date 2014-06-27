@@ -1,5 +1,5 @@
 title: BackupPC Linux Client
-description: How to configure an linux client to use and backup-pc server
+description: How to configure a linux client to use and backup-pc server.
 type: tutorial
 category: tutorials
 tags: [linux, openssh, ssh, backuppc, rsync]

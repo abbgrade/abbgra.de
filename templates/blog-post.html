@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p class="lead">
-	{{ page.summary }}
-</p>
+<div typeof="schema:BlogPosting">
+
+    <span property="schema:name" content="{{ page.title}}"></span>
+    <span property="schema:url" content="{{ page.url}}"></span>
+    {% if page.author %}
+    <span property="schema:creator" resource="/contact/{{ page.author }}.html"></span>
+    {% endif %}
+
+    <p class="lead">
+    {{ page.summary }}
+    </p>
+</div>
 {{ page.content }}
 {% endblock %}
-
-Public avaliable ressources, collected to this page.
-Based on GitHub and Diaspora.

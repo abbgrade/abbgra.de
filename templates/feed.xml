@@ -5,22 +5,22 @@
         <atom:link href="{{ site.base_url }}{{ page.url }}" rel="self"
             type="application/rss+xml" />
         <title>{{ site.site_name }}</title>
-        <link>{{ site.fq_url_prefix }}{{ page.url }}</link>
+        <link>https://abbgra.de/{{ page.url }}</link>
         <language>de-de</language>
         <pubDate>{{ site.datetime.strftime(datefmt) }}</pubDate>
         <docs>{{ site.base_url }}</docs>
-{% for item in site.categories['blog'][:10] %}
+        {% for item in site.categories['blog'][:10] %}
         <item>
             <title>{{item.title}}</title>
-            <link>{{ site.fq_url_prefix }}{{ item.url }}</link>
+            <link>https://abbgra.de/{{ item.url }}</link>
             <pubDate>{{ item.datetime.strftime(datefmt) }}</pubDate>
             <description>
                 {{ item.content|e }}
             </description>
             <guid>
-                {{site.fq_url_prefix}}{{ item.url }}
+                https://abbgra.de/{{ item.url }}
             </guid>
         </item>
-{% endfor %}
+        {% endfor %}
     </channel>
 </rss>

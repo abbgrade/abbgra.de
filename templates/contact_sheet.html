@@ -1,0 +1,48 @@
+
+<dl class="dl-horizontal" typeof="schema:Person">
+    <span property="schema:name" content="{{ person.name }}"></span>
+    <span property="schema:url" content="{{ person.url }}"></span>
+    {% if person.email %}
+	<dt>
+		EMail
+	</dt>
+	<dd>
+		<a href="mailto:{{ person.email }}" property="schema:email">
+			{{ person.email }}
+		</a>
+
+	</dd>
+    {% endif %}
+
+    {% if person.gpg %}
+    <dt>
+        PGP
+    </dt>
+    <dd>
+        <a href="{{ person.gpg[1] }}">
+           Public Key
+        </a>
+        - Fingerprint:
+        <small>
+            {{ person.gpg[0] }}
+        </small>
+    </dd>
+    {% endif %}
+
+
+    {% if person.links %}
+    {% for link_title, link_uri in person.links %}
+
+	<dt>
+		{{ link_title }}
+	</dt>
+	<dd>
+		<a href="{{ link_uri }}" rel="me" property="schema:sameAs">
+			{{ link_uri }}
+		</a>
+	</dd>
+
+    {% endfor %}
+    {% endif %}
+
+</dl>
