@@ -1,4 +1,4 @@
-tags: syntax-error
+tags: [virtual environments, traffic simulation, machine learning]
 type: blog-post
 category: blog
 datetime: 2013-06-10 00:00:00
@@ -240,11 +240,12 @@ Further, learning algorithms could be divided into *online learning* and *offlin
 Before further explanations, some additional definitions will be given in the following. The trainer holds a dataset $ D = \{\vec{s_r}, \vec{d_r}\}_{r = 1}^{q} $, with the state noted as $ \vec{s}_r $, the network responds with the output $ \vec{a}_r $ and the optimal, desired action is $ \vec{d}_r $. The error characteristics of a network are defined as follows:
 
 $$\begin{aligned}
-    e_{j,r} & = d_{j,r} - a_{j,r}                       \nonumber\\
+    e_{j,r} & = d_{j,r} - a_{j,r}                       \nonumber \\
             & = d_{j,r} - y_{z,j,r}                     \label{eq:error:signal}\\
     E_{j,r} & = \frac{1}{2} e_{j,r}^2                   \label{eq:error:neuron_energy}\\
     E_{r}       & = \frac{1}{2} \sum_{j=0}^{l_z}{e_{j,r}^2}     \label{eq:error:energy}\\
-    E_{D}   & = \frac{1}{q} \sum_{r=0}^{q}{E_{r}^2}     \label{eq:error:mean}\\\end{aligned}$$
+    E_{D}   & = \frac{1}{q} \sum_{r=0}^{q}{E_{r}^2}     \label{eq:error:mean}\\
+\end{aligned}$$
 
 As defined in equation [eq:error:signal], $ e_{j,r} $ is the *error signal* of a network response in relation to its desired value for each output neuron. $ E{j,r} $ (equation [eq:error:neuron~e~nergy]) is a scalar *error energy* of a single output neuron and $ E_r $ (equation [eq:error:energy]) is the error energy of the whole output vector. The scalar $ E_D $, as defined in equation [eq:error:mean], equals the *total error energy* for a complete dataset. A network configuration can be rated by that mean squared error, its *error rate*.
 
@@ -293,15 +294,16 @@ $$\begin{aligned}
     threshold               & = \begin{cases}
         0   & |E_{D,p - 1} - E_{D,p}| < \theta \\
         1   & else
-    \end{cases}\label{eq:convergence:threshold}\\
+    \end{cases}\label{eq:convergence:threshold} \\
     gradient\_threshold         & = \begin{cases}
         0   & \sum\delta_{i, j, k, p} < \theta \\
         1   & else
-    \end{cases}\label{eq:convergence:gradient_threshold}\\
+    \end{cases}\label{eq:convergence:gradient_threshold} \\
     early\_stopping     & = \begin{cases}
         0   & min\{ E_{D, p - \eta}, \dots, E_{D, p}\} > max\{ E_{D, p - 2 \eta}, \dots, E_{D, p - \eta - 1}\} \\
         1   & else
-    \end{cases}\label{eq:convergence:early_stopping}\end{aligned}$$
+    \end{cases}\label{eq:convergence:early_stopping}
+\end{aligned}$$
 
 ### Optimization Methods
 
