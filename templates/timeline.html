@@ -7,9 +7,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="list-group">
-{% for item in pagination.page_items %}
-	{% include 'timeline-post.html' %}
-{% endfor %}
-</div>
+    <div class="lead">
+    {{ page.content }}
+    </div>
+    <div class="list-group">
+    {% for item in pagination.page_items %}
+        {% include 'timeline-post.html' %}
+    {% endfor %}
+    </div>
 {% endblock %}

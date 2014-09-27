@@ -8,3 +8,4 @@ pagination:
     sort_key: datetime
     sort_reverse: True
 ---
+Aktivitäten auf Github, Diaspora, Digg, Wikipedia, etc.

@@ -12,7 +12,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-7">
-	        {% for item in pagination.page_items %}
+	    {% for item in pagination.page_items %}
 			<div>
 			    {% if item.thumbnail %}
 				<div style="position:relative;height:200px;overflow:hidden;">
@@ -43,7 +43,7 @@
 						</div>
 						<div class="btn-group pull-right">
 							<a class="btn btn-primary" href="{{item.url}}">
-								show more
+								show article
 							</a>
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 				<div class="clearfix"> </div>
 			</div>
 			<hr />
-	        {% endfor %}
+	    {% endfor %}
 		</div>
         <div class="col-lg-5">
 	        <div class="panel panel-default">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="panel-body">
                     <p>
-                        Aktivitäten auf Github, Diaspora, Digg, Wikipedia, etc.
+                        {{ site.slugs['timeline'].content }}
                     </p>
                 </div>
                 <ul class="list-group">

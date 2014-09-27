@@ -7,6 +7,5 @@ pagination:
    sort_reverse: true
    limit: 100
 ---
-Diese Anleitungen sind als Notizen beim Konfigurieren meines Home-Servers entstanden und werden hin und wieder aktualisiert oder erweitert.
-Die Quellen kann ich daher leider nur für neuere Tutorials angeben.
+Diese Anleitungen sind zum großen Teil als Notizen beim Konfigurieren meines Servers entstanden. Daher kann ich leider nicht für Aktualität garantieren.
 ---

@@ -45,20 +45,21 @@
 	</div>
 	<div class="container">
 		<h1 class="page-header">
-			{{ page.title }} <br />
-            <small>
-                {% if page.datetime %}
-                <span class="label label-default">
-                    {{ page.datetime.strftime("%x") }}
-                </span> &#160;
-                {% endif %}
-                {% for tag in page.tags %}
-                <span class="label label-default">
-                    {{ tag }}
-                </span>
-                {% endfor %}
-            </small>
+			{{ page.title }}
 		</h1>
+
+        <div>
+            {% if page.datetime %}
+            <span class="label label-default">
+                {{ page.datetime.strftime("%x") }}
+            </span> &#160;
+            {% endif %}
+            {% for tag in page.tags %}
+            <span class="label label-default">
+                {{ tag }}
+            </span> &#160;
+            {% endfor %}
+        </div>
 
 		{% block content %}
 		{{ page.content }}
