@@ -66,9 +66,14 @@
                     </p>
                 </div>
                 <ul class="list-group">
-                    {% for item in site.slugs['timeline'].pagination.page_items[:10] %}
-                        {% include 'timeline-post.html' %}
+                    {% for recent in site.slugs['timeline'].subpages|sort(attribute='datetime',reverse=True)|batch(10) %}
+                        {% if loop.first %}
+                            {% for item in recent %}
+                                {% include 'timeline-post.html' %}
+                            {% endfor %}
+                        {% endif %}
                     {% endfor %}
+
                     <div class="list-group-item">
                         <a class="btn btn-default pull-right" href="{{ site.slugs['timeline'].url }}">
                             show more

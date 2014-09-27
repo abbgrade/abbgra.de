@@ -18,10 +18,10 @@
 </head>
 
 <body prefix="schema: http://schema.org/">
-	<div class="navbar navbar-inverse navbar-static-top">
+	<div class="navbar navbar-not-inverse navbar-static-top">
 		<div class="container">
 			<a class="navbar-brand" href="#" style="padding: 5px; margin: 0px"><!-- style="height:20px;padding-top:5px;" -->
-				<img src="/img/logo.png" alt="{{site.title}}" style="height:35px;"/><!-- style="height:35px;" -->
+				<img src="/img/logo.png" alt="{{site.title}}" style="height:52px;"/><!-- style="height:35px;" -->
 			</a>
 			<ul class="nav navbar-nav">
 				<li{% if page.slug in [site.slugs.blog.slug] or page.url.startswith('/' + site.slugs.blog.slug) %} class="active"{% endif %}>
@@ -125,11 +125,13 @@
           }
       });
     </script>
-    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
 
 {% block javascript_plugin_block %}
 	<script type="text/javascript">
 	$(function() {
+
+		// add links to timeline actions
 	    $('.timeline_update').each(function(){
 	    	var _this = this;
 	    	actions = eval($(this).find('.timeline_actions_json').text());
@@ -142,9 +144,9 @@
 
 	    // look for anchors in headers
 	    $(':header').each(function(){
-	        if($(this).next().html().match(/\[(.+?)\]/) && $(this).next().text().length < 50 )
+	        if($(this).next().text().match(/\[(.+?)\]/) && $(this).next().text().length < 50 )
 	        {
-	            console.log("anchor header (1) " + $(this).next().text());
+	            console.log("add anchor to header (brackets) " + $(this).next().text());
                 $(this).append($(this).next().html().replace(/\[(.+?)\]/gi, '<span id="$1" />'));
                 $(this).next().remove();
 	        }
@@ -152,7 +154,7 @@
             // replace 'Introduction { #chap:introduction}' to 'Introduction <span id="chap:introduction" />'
 	        if($(this).html().match(/.+? \{.(.+?)\}/))
 	        {
-	            console.log("anchor header (2) " + $(this).text());
+	            console.log("add anchor to header (braces) " + $(this).text());
                 $(this).html($(this).html().replace(/(.+?) \{.(.+?)\}/gi, '$1 <span id="$2" />'));
 	        }
 	    });
@@ -164,7 +166,7 @@
 	        // replace '\label{foo}'
 	        if($(this).html().match(/.+?\\label\{(.+)\}/))
 	        {
-	            console.log("anchor header (2) " + $(this).text());
+	            console.log("add anchor to paragraph (braces) " + $(this).text());
                 $(this).html($(this).html().replace(/\\label\{(.+?)\}(\n?)/gi, '<span id="$1" />'));
 	        }
 
@@ -177,13 +179,12 @@
 	        var paragraph = this;
 
 	        $(new RegExp(/\[(.+?:.+?)\]/).exec($(paragraph).text())).each(function(){
-	            var reference = this;
-                reference = reference.replace(/\[(.+?)\]/, '$1');
+	            var reference = this.replace(/\[(.+?)\]/, '$1');
                 var title = $("*[id='"+reference+"']");
 
                 if($.trim($(paragraph).text()).indexOf($.trim(this)) == 0)
                 {
-                    console.log("anchor reference: " + reference);
+                    console.log("add anchor to paragraph (brackets): " + reference);
                     $(paragraph).html($(paragraph).html().replace('\['+reference+'\]', '<span id="'+reference+'" />'));
                 }
 	        });
