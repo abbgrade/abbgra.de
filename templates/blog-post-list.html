@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
-{% block sec_navigation  %}
+{% block js_plugins %}
+    {% include 'js-plugins/timeline.html' %}
 {% endblock %}
 
 {% block comments %}
@@ -54,6 +55,7 @@
 	    {% endfor %}
 		</div>
         <div class="col-lg-5">
+            <!-- Timeline -->
 	        <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2 class="panel-title">
@@ -69,7 +71,7 @@
                     {% for recent in site.slugs['timeline'].subpages|sort(attribute='datetime',reverse=True)|batch(10) %}
                         {% if loop.first %}
                             {% for item in recent %}
-                                {% include 'timeline-post.html' %}
+                                {% include 'timeline-event.html' %}
                             {% endfor %}
                         {% endif %}
                     {% endfor %}
@@ -82,6 +84,7 @@
                     </div>
                 </ul>
             </div>
+            <!-- Timeline End -->
         </div>
     </div>
 {% endblock %}

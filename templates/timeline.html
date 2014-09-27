@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
-{% block sec_navigation  %}
+{% block js_plugins %}
+    {% include 'js-plugins/timeline.html' %}
 {% endblock %}
 
 {% block comments %}
@@ -12,7 +13,7 @@
     </div>
     <div class="list-group">
     {% for item in pagination.page_items %}
-        {% include 'timeline-post.html' %}
+        {% include 'timeline-event.html' %}
     {% endfor %}
     </div>
 {% endblock %}

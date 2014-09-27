@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block js_plugins %}
+    {% include 'js-plugins/latex2markdown2html.html' %}
+{% endblock %}
+
 {% block content %}
 <div typeof="schema:BlogPosting">
 
