@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block comments %}
+    <!-- No comments for this page -->
 {% endblock %}
 
 {% block content %}
+
 	<div class="lead">
-	{{ page.content }}
+	    {{ page.content }}
 	</div>
 	<div class="row">
 		<div class="col-lg-7">
@@ -55,7 +57,9 @@
 	    {% endfor %}
 		</div>
         <div class="col-lg-5">
+
             <!-- Timeline -->
+
 	        <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2 class="panel-title">
@@ -68,10 +72,11 @@
                     </p>
                 </div>
                 <ul class="list-group">
-                    {% for recent in site.slugs['timeline'].subpages|sort(attribute='datetime',reverse=True)|batch(10) %}
+
+                    {% for events in site.slugs['timeline'].subpages|sort(attribute='datetime',reverse=True)|batch(10) %}
                         {% if loop.first %}
-                            {% for item in recent %}
-                                {% include 'timeline-event.html' %}
+                            {% for event in events %}
+                                {% include 'widgets/timeline-event.html' %}
                             {% endfor %}
                         {% endif %}
                     {% endfor %}
@@ -84,7 +89,10 @@
                     </div>
                 </ul>
             </div>
+
             <!-- Timeline End -->
+
         </div>
     </div>
+
 {% endblock %}

@@ -7,5 +7,7 @@ pagination:
     limit: 1000
     sort_key: datetime
     sort_reverse: True
+    
 ---
-Aktivitäten auf Github, Diaspora, Digg, Wikipedia, etc.
+
+Meine Aktivitäten auf Github, Diaspora, Digg, Wikipedia, etc.

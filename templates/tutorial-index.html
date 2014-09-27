@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block comments %}
+    <!-- No comments for this page -->
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8">
+
+            <div class="lead">
+                {{ page.content }}
+            </div>
+
+            <!-- Tutorials -->
+
+            {% for tutorial in page.subpages %}
+
+                <div>
+                    <h2>
+                        {{ tutorial.title }}
+                    </h2>
+                    <p>
+                        {{ tutorial.description }}
+                    </p>
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+
+                            {% for tag in tutorial.tags %}
+
+                                <a class="btn btn-default dropdown-toggle" disabled="disabled" role="button" data-toggle="dropdown" data-target="#tag_{{tag}}">
+                                    {{ tag }}
+                                </a>
+
+                            {% endfor %}
+
+                        </div>
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-primary" href="{{tutorial.url}}">
+                                show tutorial
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+            {% endfor %}
+
+            <!-- Tutorials End -->
+
+        </div>
+        <div class="col-lg-3">
+
+            <!-- Tagsearch -->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Tagsearch
+                    </h3>
+                </div>
+                <ul class="nav nav-pills nav-stacked">
+
+                    {% for tag in site.tags|sort %}
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="badge">{{ site.tags[tag]|length }}</span>
+                                {{ tag }}
+                            </a>
+                            <ul class="dropdown-menu" role="menu" id="tag_{{ tag }}">
+                                <li class="dropdown-header">Related Tutorials</li>
+
+                                {% for tutorial in site.tags[tag] %}
+
+                                    <li>
+                                        <a href="{{ page.url_prefix }}{{tutorial.url}}">
+                                            {{tutorial.title}}
+                                        </a>
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+                        </li>
+
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+            <!-- Tagsearch End -->
+
+        </div>
+    </div>
+
+{% endblock %}

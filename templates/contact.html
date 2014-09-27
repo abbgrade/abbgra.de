@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
 {% block comments %}
+    <!-- No comments for this page -->
 {% endblock %}
 
 {% block content %}
-
-{% set person = page %}
-{% include 'contact_sheet.html' %}
-
-{{ page.content }}
+    {% set person = page %}
+    {% include 'widgets/contact-sheet.html' %}
+    {{ page.content }}
 {% endblock %}

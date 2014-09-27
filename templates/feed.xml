@@ -9,18 +9,22 @@
         <language>de-de</language>
         <pubDate>{{ site.datetime.strftime(datefmt) }}</pubDate>
         <docs>{{ site.base_url }}</docs>
-        {% for item in site.categories['blog'][:10] %}
-        <item>
-            <title>{{item.title}}</title>
-            <link>https://abbgra.de/{{ item.url }}</link>
-            <pubDate>{{ item.datetime.strftime(datefmt) }}</pubDate>
-            <description>
-                {{ item.content|e }}
-            </description>
-            <guid>
-                https://abbgra.de/{{ item.url }}
-            </guid>
-        </item>
+
+        {% for item in site.categories['blog']|sort(attribute='datetime',reverse=True) %}
+
+            <item>
+                <title>{{item.title}}</title>
+                <link>https://abbgra.de/{{ item.url }}</link>
+                <pubDate>{{ item.datetime.strftime(datefmt) }}</pubDate>
+                <description>
+                    {{ item.content|e }}
+                </description>
+                <guid>
+                    https://abbgra.de/{{ item.url }}
+                </guid>
+            </item>
+
         {% endfor %}
+
     </channel>
 </rss>

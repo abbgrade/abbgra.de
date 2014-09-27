@@ -5,15 +5,20 @@
 {% endblock %}
 
 {% block comments %}
+    <!-- No comments for this page -->
 {% endblock %}
 
 {% block content %}
+
     <div class="lead">
-    {{ page.content }}
+        {{ page.content }}
     </div>
     <div class="list-group">
-    {% for item in pagination.page_items %}
-        {% include 'timeline-event.html' %}
-    {% endfor %}
+
+        {% for event in pagination.page_items %}
+            {% include 'widgets/timeline-event.html' %}
+        {% endfor %}
+
     </div>
+
 {% endblock %}

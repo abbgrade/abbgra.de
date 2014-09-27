@@ -1,0 +1,42 @@
+<hr />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Comments
+        </h3>
+    </div>
+    <div class="panel-body">
+
+        {% for comment in page.subpages %}
+
+            <div class="media">
+                <h4 class="media-heading">
+                    {{comment.author}}
+                    <span class="label">
+                        {{ comment.datetime.strftime('%c') }}
+                    </span>
+                </h4>
+                <div class="media-body">
+                    <blockquote>
+                        {{ comment.content }}
+                    </blockquote>
+                </div>
+            </div>
+
+        {% endfor %}
+
+        <div>
+            <a class="btn btn-primary" href="mailto:comment@abbgra.de?subject={{ page.category[0]|safe }}%2F{{ page.slug|safe }}">
+                Add Comment
+            </a>
+            <div class="help-block">
+                Please don't edit the subject!
+            </div>
+            <div class="alert alert-info">
+                The commenting system is based on e-mail.
+                On the next page generation, your comment will be added from the mailbox.
+                The email address wont be published!
+            </div>
+        </div>
+    </div>
+</div>
