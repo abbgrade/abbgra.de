@@ -3,6 +3,6 @@ slug: stackoverflow-answer-19087178
 category: timeline
 type: base
 datetime: 2013-09-30 07:44:03
-actions: [["show answer", "http://api.stackexchange.com/2.1/posts/19087178?order=desc&sort=activity&site=stackoverflow"]]
+actions: [["show answer", "http://stackoverflow.com/a/19087178"]]
 ---
-answered on stackoverflow [PyOpenCl casting global data](http://api.stackexchange.com/2.1/posts/19087178?order=desc&sort=activity&site=stackoverflow)
+answered on stackoverflow [PyOpenCl casting global data](http://stackoverflow.com/a/19087178)
