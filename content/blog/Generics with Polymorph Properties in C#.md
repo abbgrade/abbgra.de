@@ -20,6 +20,7 @@ For the dirty details have a look at the following C# implementation.
 
 The animals are as simple as possible. An abstract super class requires the implementation of the *Pet* method. The *Crocodile* is derived from *Animal* and has a *Feed* method that gets a *Gazelle* as parameter.
 
+    ::C#
     public abstract class Animal
     {
         public abstract void Pet();
@@ -50,6 +51,7 @@ The animals are as simple as possible. An abstract super class requires the impl
 
 The implementation of *Compound* contains a piece of magic. It requires the implementation of a protected accessor of the *Animal* instance and contains a public accessor of that *Animal* instance.
 
+    ::C#
     public abstract class Compound
     {
         protected abstract Animal baseAnimal { get; }
@@ -59,6 +61,7 @@ The implementation of *Compound* contains a piece of magic. It requires the impl
 
 The generic *Compound* class contains a public accessor of the derived *Animal* class and stores the instance. That accessor shadows the accessor of the super class so the return type of the accessor method depends of access method. If you access *animal* from the derived class you get a derived *AnimalType*, for example *Crocodile*. If you access *animal* from the base class you get an *Animal*. 
 
+    ::C#
     public abstract class Compound<AnimalType> : Compound
         where AnimalType : Animal
     {
@@ -74,6 +77,7 @@ The generic *Compound* class contains a public accessor of the derived *Animal* 
 
 The next classes are not neccessary but they illustrate the advantages of the presented implementation method. In that derived classes you can access *animal* and don't need to cast it to derived *Animal* class.
 
+    ::C#
     public class GazelleCompound : Compound<Gazelle>
     {
         public GazelleCompound(Gazelle gazelle)
@@ -94,6 +98,7 @@ The next classes are not neccessary but they illustrate the advantages of the pr
 
 The *Zoo* class creates a few instances derived from *Compound* and stores them in a list of compounds.
 
+    ::C#
     public class Zoo
     {
         public static void Main()
@@ -107,6 +112,7 @@ The *Zoo* class creates a few instances derived from *Compound* and stores them 
 
 The base class methods are available.
 
+    ::C#
             foreach (var show in compounds)
             {
                 show.animal.Pet();
@@ -114,6 +120,7 @@ The base class methods are available.
 
 The methods of the special classes are available without casting, which means that compiler is able to validate the implementation and in runtime no suprises will appear.
 
+    ::C#
             crocodileCompound.animal.Feed(gazelleCompound.animal);
         }
     }

@@ -8,6 +8,7 @@ date: 2012-12-12
 
 ## create container
 
+	::Bash
 	CONTAINERNAME=new_container
 	VNETNAME=default
 	sudo lxc-create -t ubuntu -n $CONTAINERNAME -- -S .ssh/id_rsa.pub --bindhome $(whoami)
@@ -17,10 +18,12 @@ date: 2012-12-12
 You can edit an existing template by updating the containername in the name-tag and in the filesystem source dir.
 And updating the source network name.
 
+	::Bash
 	nano lxc2libvirt.xml
 
 or by crating a new one:
 
+	::Bash
 	echo "<domain type='lxc'>
 	  <name>$CONTAINERNAME</name>
 	  <memory>1048576</memory>
@@ -48,12 +51,14 @@ or by crating a new one:
 
 ## add libvirt domain
 
+	::Bash
 	sudo virsh -c lxc:/// define lxc2libvirt.xml
 
 ## create network configuration
 
 The following command creates a DHCP configuration for the virtual network device.
 
+	::Bash
 	sudo echo "# This file describes the network interfaces available on your system
 	# and how to activate them. For more information, see interfaces(5).
 	
@@ -71,6 +76,7 @@ Using the virt-manager console, you are able to login with your username and pas
 
 ## fix language configuration
 
+	::Bash
 	export LANGUAGE=de_DE.UTF-8
 	export LANG=de_DE.UTF-8
 	export LC_ALL=de_DE.UTF-8
@@ -81,38 +87,46 @@ Using the virt-manager console, you are able to login with your username and pas
 
 At first, it's necessary to update the software repository
 
-    sudo apt-get update
+    ::Bash
+	sudo apt-get update
 
 The following command installs the avahi-daemon, which is used as a local DNS service.
 
+	::Bash
 	sudo apt-get install libnss-mdns
 
 The next step is to fix avahi in virtual machines by disabling "rlimit-nproc" with a comment:
 
+	::Bash
 	sudo vi /etc/avahi/avahi-daemon.conf 
 	
 	#rlimit-nproc=3
 
 reload the avahi daemon by:
 
+	::Bash
 	sudo service avahi-daemon reload
 
 Now you can login via ssh
 
+	::Bash
 	ssh username@containername.local
 
 ## user creation
 
 If you left out the following parameter on the container creation, then you have to create a new user.
 
+	::Bash
 	-- -S .ssh/id_rsa.pub --bindhome $(whoami)
 
 ### add new user
 
+	::Bash
 	sudo useradd $USERNAME -s /bin/bash -m
 	sudo passwd $USERNAME
 	sudo adduser $USERNAME sudo
 
 ### delete inscure default user
 
+	::Bash
 	sudo userdel -r ubuntu

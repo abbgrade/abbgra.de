@@ -10,10 +10,12 @@ date: 2013-08-24
 
 Some steps must be executed as superuser.
 
+	::Bash
 	sudo su
 
 This steps install and configure the node.
 	
+	::Bash
 	MUNIN_MASTER=munin.local
 	# Install.
 	apt-get install -y munin-node munin-plugins-extra avahi-utils

@@ -11,12 +11,14 @@ If for example the error of pyopencl or clinfo is
     
 Find where the binaries are:
 
-    find /usr -name 'libOpenCL.so.1'
+    ::Bash
+	find /usr -name 'libOpenCL.so.1'
     find /opt -name 'libOpenCL.so.1'
 
 An example result is:
 
-    /usr/lib/x86_64-linux-gnu/libOpenCL.so
+    ::Bash
+	/usr/lib/x86_64-linux-gnu/libOpenCL.so
     /usr/lib/nvidia-319-updates/libOpenCL.so
     /usr/lib/nvidia-319-updates/libOpenCL.so.1.0.0
     /usr/lib/nvidia-319-updates/libOpenCL.so.1
@@ -33,7 +35,8 @@ An example result is:
 The nvidia and intel binaries are installed.
 Configure them in a root shell:
     
-    echo "/opt/intel/opencl-1.2-3.2.1.16712/lib64" > /etc/ld.so.conf.d/opencl-vendor-intel.conf
+    ::Bash
+	echo "/opt/intel/opencl-1.2-3.2.1.16712/lib64" > /etc/ld.so.conf.d/opencl-vendor-intel.conf
     echo "/usr/lib/nvidia-319-updates" > /etc/ld.so.conf.d/opencl-vendor-nvidia.conf
     ldconfig
 

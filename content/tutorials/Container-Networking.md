@@ -6,6 +6,7 @@ tags: [linux, server, networking, virtualization, openvz]
 date: 2012-12-12
 ---
 
+	::Bash
 	nano /var/lib/vz/private/10x/etc/network/interfaces
 
 
