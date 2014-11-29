@@ -1,7 +1,7 @@
-<div class="navbar navbar-not-inverse navbar-static-top">
+<div class="navbar navbar-inverse navbar-static-top">
     <div class="container">
-        <a class="navbar-brand" href="#" style="padding: 5px; margin: 0px"><!-- style="height:20px;padding-top:5px;" -->
-            <img src="/img/logo.png" alt="{{site.title}}" style="height:52px;"/><!-- style="height:35px;" -->
+        <a class="navbar-brand" href="#" style="padding: 5px; margin: 0px"> <!--style="height:20px;padding-top:5px;"-->
+            <img src="/img/logo.png" alt="{{site.title}}" style="height:35px;"/><!-- style="height:52px;" -->
         </a>
         <ul class="nav navbar-nav">
             <li{% if page.slug in [site.slugs.blog.slug] or page.url.startswith('/' + site.slugs.blog.slug) %} class="active"{% endif %}>
